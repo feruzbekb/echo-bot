@@ -17,11 +17,20 @@ class Bot:
 
         return []
 
-    def send_message(self, chat_id: int, text: str, reply_markup: list) -> None:
-        pass
+    def send_message(self, chat_id: int, text: str, reply_markup: list = []) -> None:
+        payload = {"chat_id": chat_id, "text": text}
+        response = requests.get(
+            f"https://api.telegram.org/bot{self.token}/sendMessage", params=payload
+        )
 
     def send_photo(self, chat_id: int, photo: str | list) -> None:
-        pass
+        payload = {
+            "chat_id": chat_id,
+            "photo": photo if type(str) == str else photo[0]["file_id"],
+        }
+        response = requests.get(
+            f"https://api.telegram.org/bot{self.token}/sendPhoto", params=payload
+        )
 
     def send_location(self, chat_id: int, lat: float, lon: float) -> None:
         pass

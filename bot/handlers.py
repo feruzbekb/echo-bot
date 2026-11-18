@@ -1,9 +1,12 @@
+from bot.context import Context
+
+
 class BaseHandler:
     def __init__(self, callback):
         self.callback = callback
 
-    def handle_update(self, update: dict) -> None:
-        self.callback(update)
+    def handle_update(self, update: dict, context: Context) -> None:
+        self.callback(update, context)
 
 
 class TextHandler(BaseHandler):

@@ -9,7 +9,7 @@ from bot.distpatcher import Dispatcher
 class Updater:
     def __init__(self, token: str) -> None:
         self.bot = Bot(token)
-        self.dispatcher = Dispatcher()
+        self.dispatcher = Dispatcher(self.bot)
 
     def start_polling(self) -> None:
         while True:
